@@ -8,8 +8,8 @@ import { prisma } from "./prisma";
 // nodemailer transcript
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
-  port: 587,
-  secure: false, // Use true for port 465, false for port 587
+  port: 465,
+  secure: true, // Use true for port 465, false for port 587
   auth: {
     user: config.app_user,
     pass: config.app_pass,
@@ -24,6 +24,12 @@ export const auth = betterAuth({
     enabled: true,
     autoSignIn: false,
     requireEmailVerification: true,
+  },
+  socialProviders: {
+    google: {
+      clientId: config.google_client_id as string,
+      clientSecret: config.google_client_secret as string,
+    },
   },
   emailVerification: {
     sendOnSignUp: true,

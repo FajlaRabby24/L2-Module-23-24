@@ -9,7 +9,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: config.app_url,
+    origin: config.app_url || "http://localhost:4000", // client side url
     credentials: true,
   })
 );
